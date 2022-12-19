@@ -1,7 +1,13 @@
+import CakeList from "./components/Cakes/CakeList";
+import NewCakeForm from "./components/Cakes/NewCakeForm";
+import Header from "./components/Layout/Header";
+
 const App = () => {
   return (
-    <div className="App">
-      <h1>Hello</h1>
+    <div>
+      <Header />
+      <CakeList />
+      <NewCakeForm />
     </div>
   );
 };
