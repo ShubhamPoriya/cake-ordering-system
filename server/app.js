@@ -2,17 +2,50 @@ const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
 const cors = require("cors");
+const mongoose = require("mongoose");
+const dotenv = require("dotenv");
+var adminRouter = require("./Routes/admin.routes");
+
+dotenv.config();
 
 app.use(cors());
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-PORT = 8080;
+mongoose.set("strictQuery", true);
 
-app.listen(PORT, () => {
-  console.log(`Server running on ${PORT}`);
+const port = process.env.PORT;
+const dbUrl = process.env.URI;
+
+app.listen(port, () => {
+  console.log(`Server running on ${port}`);
 });
 
 app.get("/", (req, res) => {
   res.send("Hello!");
 });
+
+mongoose
+  .connect(dbUrl, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => console.log("Database Connected"))
+  .catch((err) => console.log(err));
+
+app.use("/admin", adminRouter);
+
+app.use(function (req, res, next) {
+  res.status(404).json({
+    message: "No such route exists",
+  });
+});
+
+// error handler
+app.use(function (err, req, res, next) {
+  res.status(err.status || 500).json({
+    message: "Error Message",
+  });
+});
+
+module.exports = app;
