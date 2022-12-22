@@ -33,6 +33,8 @@ mongoose
   .then(() => console.log("Database Connected"))
   .catch((err) => console.log(err));
 
+mongoose.Promise = global.Promise;
+
 app.use("/admin", adminRouter);
 
 app.use(function (req, res, next) {
