@@ -1,3 +1,26 @@
-.nav li {
+.header {
+  height: 10vh;
+  width: 100%;
+  background-color: pink;
+  margin: auto;
+}
+
+.header ul {
+  height: inherit;
+  display: flex;
+  flex-direction: row;
+  justify-content: right;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.header li {
+  margin: auto 0;
+  margin-right: 35px;
+}
+
+.header a {
   text-decoration: none;
 }
