@@ -1,42 +1,25 @@
 const Item = require("../Models/item");
 
-CAKE = [
-  {
-    itemName: "Black Forest",
-    itemDesc:
-      "Chocolate cake with vanilla icing and decorated with milk chocolate flakes.",
-    itemPrice: 1000,
-  },
-  {
-    itemName: "Belgian Chocolate",
-    itemDesc:
-      "Dutch Chocolate cake with chocolate ganache icing and decorated with dark chocolate flakes.",
-    itemPrice: 2000,
-  },
-];
-
 const addItem = (req, res) => {
-  cake_1 = new Item({
-    itemName: "Black Forest",
-    itemDesc:
-      "Chocolate cake with vanilla icing and decorated with milk chocolate flakes.",
-    itemBasePrice: 1000,
-    itemImage: "Black-Forest-Cake.jpg",
-  });
-  cake_2 = new Item({
-    itemName: "Belgian Chocolate",
-    itemDesc:
-      "Dutch Chocolate cake with chocolate ganache icing and decorated with dark chocolate flakes.",
-    itemBasePrice: 2000,
-    itemImage: "Belgian-Chocolate-Cake.jpg",
-  });
-  Item.create(cake_2, (err, data) => {
-    if (err) {
+  const cakeName = req.body.cakeName;
+  const cakeDesc = req.body.cakeDesc;
+  const cakePrice = req.body.cakePrice;
+  const cakePhoto = req.body.cakePhoto;
+
+  Item.insertOne([
+    {
+      itemName: cakeName,
+      itemDesc: cakeDesc,
+      itemPrice: cakePrice,
+    },
+  ])
+    .then((data) => {
+      res.send(data);
+      console.log("item added!");
+    })
+    .catch((err) => {
       console.log(err);
-    }
-    res.send(data);
-    console.log("item saved");
-  });
+    });
 };
 
 const getItems = (req, res) => {
