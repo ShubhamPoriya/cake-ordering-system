@@ -1,18 +1,16 @@
 const Item = require("../Models/item");
 
 const addItem = (req, res) => {
-  Item.insertMany([
+  const cakeName = req.body.cakeName;
+  const cakeDesc = req.body.cakeDesc;
+  const cakePrice = req.body.cakePrice;
+  const cakePhoto = req.body.cakePhoto;
+
+  Item.insertOne([
     {
-      itemName: "Black Forest",
-      itemDesc:
-        "Chocolate cake with vanilla icing and decorated with milk chocolate flakes.",
-      itemPrice: 1000,
-    },
-    {
-      itemName: "Belgian Chocolate",
-      itemDesc:
-        "Dutch Chocolate cake with chocolate ganache icing and decorated with dark chocolate flakes.",
-      itemPrice: 2000,
+      itemName: cakeName,
+      itemDesc: cakeDesc,
+      itemPrice: cakePrice,
     },
   ])
     .then((data) => {
