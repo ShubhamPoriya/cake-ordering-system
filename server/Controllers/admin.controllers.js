@@ -1,21 +1,22 @@
 const Item = require("../Models/item");
 
-const addItem = (req, res) => {
+const addItem = async (req, res) => {
   const cakeName = req.body.cakeName;
   const cakeDesc = req.body.cakeDesc;
-  const cakePrice = req.body.cakePrice;
-  const cakePhoto = req.body.cakePhoto;
+  const cakePrice = req.body.cakeBasePrice;
+  const cakePhoto = req.body.cakeImage;
 
-  Item.insertOne([
+  await Item.insertMany([
     {
       itemName: cakeName,
       itemDesc: cakeDesc,
-      itemPrice: cakePrice,
+      itemBasePrice: cakePrice,
+      itemImage: cakePhoto,
     },
   ])
     .then((data) => {
       res.send(data);
-      console.log("item added!");
+      console.log("Item added!");
     })
     .catch((err) => {
       console.log(err);
