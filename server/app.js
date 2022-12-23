@@ -37,14 +37,14 @@ mongoose.Promise = global.Promise;
 
 app.use("/admin", adminRouter);
 
-app.use(function (req, res, next) {
+app.use((req, res, next) => {
   res.status(404).json({
     message: "No such route exists",
   });
 });
 
 // error handler
-app.use(function (err, req, res, next) {
+app.use((err, req, res, next) => {
   res.status(err.status || 500).json({
     message: "Error Message",
   });
