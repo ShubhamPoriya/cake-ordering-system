@@ -3,26 +3,44 @@ import { useRef, useState } from "react";
 import axios from "axios";
 
 const NewCakeForm = () => {
-  const [submitForm, setSubmitForm] = useState(false);
+  const [submittingForm, setSubmittingForm] = useState(false);
   const nameInputRef = useRef();
   const descInputRef = useRef();
   const priceInputRef = useRef();
   const photoInputRef = useRef();
 
+  const addCakeData = async (cakeData) => {
+    try {
+      const response = await axios.post(
+        "http://localhost:8080/admin/addItem",
+        cakeData
+      );
+      console.log(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   const formSubmitHandler = (event) => {
     event.preventDefault();
+    setSubmittingForm(true);
 
     const enteredName = nameInputRef.current.value;
     const enteredDesc = descInputRef.current.value;
     const enteredPrice = priceInputRef.current.value;
     const enteredPhoto = photoInputRef.current.value;
 
-    const addCakeData = async () => {
-      const response = await axios.post("http://localhost:8080/admin/addItem");
+    const inputData = {
+      cakeName: enteredName,
+      cakeDesc: enteredDesc,
+      cakeBasePrice: enteredPrice,
+      cakeImage: enteredPhoto,
     };
 
-    console.log(submitForm);
-    setSubmitForm(true);
+    addCakeData(inputData);
+
+    console.log(submittingForm);
+    setSubmittingForm(false);
   };
 
   return (
@@ -53,7 +71,7 @@ const NewCakeForm = () => {
         <input
           type="number"
           id="cake-name"
-          placeholder="Name of the cake"
+          placeholder="Price of the cake"
           ref={priceInputRef}
           required
         />
