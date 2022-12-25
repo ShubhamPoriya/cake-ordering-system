@@ -1,15 +1,12 @@
-import CakeList from "./components/Cakes/CakeList";
-import NewCakeForm from "./components/Cakes/NewCakeForm";
-import Header from "./components/Layout/Header";
-import SideNav from "./components/Layout/SideNav";
+import { Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
 
 const App = () => {
   return (
     <div>
-      <SideNav />
-      <Header />
-      <CakeList />
-      <NewCakeForm />
+      <Routes>
+        <Route path="*" component={Home} />
+      </Routes>
     </div>
   );
 };
