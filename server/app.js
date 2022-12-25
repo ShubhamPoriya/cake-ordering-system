@@ -3,10 +3,9 @@ const app = express();
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const mongoose = require("mongoose");
-const dotenv = require("dotenv");
 var adminRouter = require("./Routes/admin.routes");
 
-dotenv.config();
+require("dotenv").config();
 
 app.use(cors());
 app.use(express.json());
@@ -33,16 +32,18 @@ mongoose
   .then(() => console.log("Database Connected"))
   .catch((err) => console.log(err));
 
+mongoose.Promise = global.Promise;
+
 app.use("/admin", adminRouter);
 
-app.use(function (req, res, next) {
+app.use((req, res, next) => {
   res.status(404).json({
     message: "No such route exists",
   });
 });
 
 // error handler
-app.use(function (err, req, res, next) {
+app.use((err, req, res, next) => {
   res.status(err.status || 500).json({
     message: "Error Message",
   });
