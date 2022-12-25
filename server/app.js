@@ -3,10 +3,9 @@ const app = express();
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const mongoose = require("mongoose");
-const dotenv = require("dotenv");
 var adminRouter = require("./Routes/admin.routes");
 
-dotenv.config();
+require("dotenv").config();
 
 app.use(cors());
 app.use(express.json());
