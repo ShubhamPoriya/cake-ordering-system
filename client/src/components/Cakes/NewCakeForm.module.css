@@ -1,9 +1,56 @@
-.input,
-.input textarea {
-  padding-bottom: 1rem;
+.cakeForm {
+  display: block;
+  box-sizing: border-box;
+  max-width: 500px;
+  text-align: center;
+  margin: auto;
+  margin-top: 15vh;
+  border: 3px solid rgba(255, 192, 203, 0.554);
+  padding: 30px;
+  border-radius: 30px;
 }
 
-.input label {
-  font-size: 1.1rem;
-  padding-right: 1rem;
+.cakeForm h1 {
+  color: brown;
+  margin-bottom: 50px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid pink;
+}
+
+.cakeForm input {
+  width: 100%;
+  margin-bottom: 20px;
+  border: 1px solid rgba(165, 42, 42, 0.518);
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.cakeForm label {
+  width: 100%;
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+}
+
+.cakeForm textarea {
+  width: 100%;
+  border: 1px solid rgba(165, 42, 42, 0.518);
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+.cakeForm button {
+  width: 100%;
+  margin: 15px 0;
+  background-color: pink;
+  color: brown;
+  border: none;
+  border: 1px solid pink;
+  border-radius: 25px;
+  font-weight: bolder;
+  font-size: 1.2rem;
+}
+
+.bday {
+  font-size: 2rem;
 }
