@@ -21,7 +21,6 @@ const CakeList = () => {
       cakeName={item.itemName}
       cakeDesc={item.itemDesc}
       cakeBasePrice={item.itemBasePrice}
-      cakeImage={item.itemImage}
     />
   ));
 

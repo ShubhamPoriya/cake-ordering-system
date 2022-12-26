@@ -7,7 +7,6 @@ const NewCakeForm = () => {
   const nameInputRef = useRef();
   const descInputRef = useRef();
   const priceInputRef = useRef();
-  const photoInputRef = useRef();
 
   const addCakeData = async (cakeData) => {
     try {
@@ -28,14 +27,11 @@ const NewCakeForm = () => {
     const enteredName = nameInputRef.current.value;
     const enteredDesc = descInputRef.current.value;
     const enteredPrice = priceInputRef.current.value;
-    const enteredPhoto = photoInputRef.current.value;
-    console.log(enteredPhoto);
 
     const inputData = {
       cakeName: enteredName,
       cakeDesc: enteredDesc,
       cakeBasePrice: enteredPrice,
-      cakeImage: enteredPhoto,
     };
 
     addCakeData(inputData);
@@ -80,19 +76,13 @@ const NewCakeForm = () => {
           required
         />
       </div>
-      <div className={classes.input}>
-        <label htmlFor="cake-photo">Photo</label>
-        <input
-          type="file"
-          id="cake-photo"
-          name="cake_photo"
-          placeholder="Photo of the cake"
-          ref={photoInputRef}
-          required
-        />
-      </div>
       <div>
-        <button type="submit" id="submit-cake-details" name="submit-details">
+        <button
+          type="submit"
+          onSubmit={formSubmitHandler}
+          id="submit-cake-details"
+          name="submit-details"
+        >
           Submit
         </button>
       </div>

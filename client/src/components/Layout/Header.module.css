@@ -3,6 +3,8 @@
   width: 100%;
   background-color: pink;
   margin: auto;
+  position: fixed;
+  top: 0;
 }
 
 .header ul {
