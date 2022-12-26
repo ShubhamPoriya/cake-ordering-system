@@ -1,42 +1,45 @@
 const Item = require("../Models/item");
+const upload = require("../Middleware/upload");
+require("dotenv").config;
 
-CAKE = [
-  {
-    itemName: "Black Forest",
-    itemDesc:
-      "Chocolate cake with vanilla icing and decorated with milk chocolate flakes.",
-    itemPrice: 1000,
-  },
-  {
-    itemName: "Belgian Chocolate",
-    itemDesc:
-      "Dutch Chocolate cake with chocolate ganache icing and decorated with dark chocolate flakes.",
-    itemPrice: 2000,
-  },
-];
+const uploadItem = async (req, res) => {
+  try {
+    await upload(req, res);
+    console.log(req.file);
 
-const addItem = (req, res) => {
-  cake_1 = new Item({
-    itemName: "Black Forest",
-    itemDesc:
-      "Chocolate cake with vanilla icing and decorated with milk chocolate flakes.",
-    itemBasePrice: 1000,
-    itemImage: "Black-Forest-Cake.jpg",
-  });
-  cake_2 = new Item({
-    itemName: "Belgian Chocolate",
-    itemDesc:
-      "Dutch Chocolate cake with chocolate ganache icing and decorated with dark chocolate flakes.",
-    itemBasePrice: 2000,
-    itemImage: "Belgian-Chocolate-Cake.jpg",
-  });
-  Item.create(cake_2, (err, data) => {
-    if (err) {
-      console.log(err);
+    if (req.file == undefined) {
+      return res.send({ message: "You must select a file" });
+    } else {
+      return res.send({ message: "File has been uploaded" });
     }
-    res.send(data);
-    console.log("item saved");
-  });
+  } catch (error) {
+    console.log(error);
+    return res.send({ message: "Error when trying to upload image" });
+  }
+};
+
+const addItem = async (req, res) => {
+  const cakeName = req.body.cakeName;
+  const cakeDesc = req.body.cakeDesc;
+  const cakePrice = req.body.cakeBasePrice;
+  const cakePhoto = req.body.cakeImage;
+  console.log(req.body);
+
+  await Item.insertMany([
+    {
+      itemName: cakeName,
+      itemDesc: cakeDesc,
+      itemBasePrice: cakePrice,
+      itemImage: cakePhoto,
+    },
+  ])
+    .then((data) => {
+      res.send(data);
+      console.log("Item added!");
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 };
 
 const getItems = (req, res) => {
@@ -52,4 +55,5 @@ const getItems = (req, res) => {
 module.exports = {
   addItem,
   getItems,
+  uploadItem,
 };

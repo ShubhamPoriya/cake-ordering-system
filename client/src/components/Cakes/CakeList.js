@@ -1,6 +1,7 @@
 import classes from "./CakeList.module.css";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import Cake from "./Cake";
 
 const CakeList = () => {
   const [items, setItems] = useState([]);
@@ -9,28 +10,25 @@ const CakeList = () => {
     const res = await axios.get("http://localhost:8080/admin/getItems");
     setItems(res.data);
   };
+
   useEffect(() => {
     loadData();
   }, []);
+
+  const cakesList = items.map((item) => (
+    <Cake
+      key={item._id}
+      cakeName={item.itemName}
+      cakeDesc={item.itemDesc}
+      cakeBasePrice={item.itemBasePrice}
+      cakeImage={item.itemImage}
+    />
+  ));
+
   return (
     <div className={classes.container}>
       <h1 className={classes.h1}>Available Cakes</h1>
-      {items.map((item, key) => {
-        return (
-          <div className={classes.cakeCard}>
-            <img
-              className={classes.cakeImg}
-              src={item.itemImage}
-              alt={item.itemName}
-            />
-            <div className={classes.cakeDetails}>
-              <p>{item.itemName}</p>
-              <p>{item.itemDesc}</p>
-              <p>{item.itemBasePrice}</p>
-            </div>
-          </div>
-        );
-      })}
+      <ul>{cakesList}</ul>
     </div>
   );
 };
