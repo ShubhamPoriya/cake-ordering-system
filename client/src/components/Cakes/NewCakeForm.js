@@ -1,13 +1,15 @@
 import classes from "./NewCakeForm.module.css";
 import { useRef, useState } from "react";
 import axios from "axios";
+import Header from "../Layout/Header";
+import { FaBirthdayCake } from "react-icons/fa";
+import { IconContext } from "react-icons/lib";
 
 const NewCakeForm = () => {
   const [submittingForm, setSubmittingForm] = useState(false);
   const nameInputRef = useRef();
   const descInputRef = useRef();
   const priceInputRef = useRef();
-  const photoInputRef = useRef();
 
   const addCakeData = async (cakeData) => {
     try {
@@ -28,14 +30,11 @@ const NewCakeForm = () => {
     const enteredName = nameInputRef.current.value;
     const enteredDesc = descInputRef.current.value;
     const enteredPrice = priceInputRef.current.value;
-    const enteredPhoto = photoInputRef.current.value;
-    console.log(enteredPhoto);
 
     const inputData = {
       cakeName: enteredName,
       cakeDesc: enteredDesc,
       cakeBasePrice: enteredPrice,
-      cakeImage: enteredPhoto,
     };
 
     addCakeData(inputData);
@@ -45,58 +44,60 @@ const NewCakeForm = () => {
   };
 
   return (
-    <form onSubmit={formSubmitHandler} encType="multipart/form-data">
-      <div className={classes.input}>
-        <label htmlFor="cake-name">Name</label>
-        <input
-          type="text"
-          id="cake-name"
-          name="cake-name"
-          placeholder="Name of the cake"
-          ref={nameInputRef}
-          required
-        />
-      </div>
-      <div className={classes.input}>
-        <label htmlFor="cake-desc">Description</label>
-        <textarea
-          id="cake-desc"
-          name="cake-desc"
-          rows="3"
-          cols="25"
-          placeholder="Description of the cake"
-          ref={descInputRef}
-          required
-        />
-      </div>
-      <div className={classes.input}>
-        <label htmlFor="cake-price">Price</label>
-        <input
-          type="number"
-          id="cake-price"
-          name="cake-price"
-          placeholder="Price of the cake"
-          ref={priceInputRef}
-          required
-        />
-      </div>
-      <div className={classes.input}>
-        <label htmlFor="cake-photo">Photo</label>
-        <input
-          type="file"
-          id="cake-photo"
-          name="cake_photo"
-          placeholder="Photo of the cake"
-          ref={photoInputRef}
-          required
-        />
-      </div>
-      <div>
-        <button type="submit" id="submit-cake-details" name="submit-details">
-          Submit
-        </button>
-      </div>
-    </form>
+    <div className={classes.container}>
+      <Header />
+      <form
+        onSubmit={formSubmitHandler}
+        encType="multipart/form-data"
+        className={classes.cakeForm}
+      >
+        <h1>New Cake Form</h1>
+        <div className={classes.input}>
+          <label htmlFor="cake-name">Cake Title</label>
+          <input
+            type="text"
+            id="cake-name"
+            name="cake-name"
+            placeholder="Name of the cake"
+            ref={nameInputRef}
+            required
+          />
+        </div>
+        <div className={classes.input}>
+          <label htmlFor="cake-desc">Description</label>
+          <textarea
+            id="cake-desc"
+            name="cake-desc"
+            rows="3"
+            cols="25"
+            placeholder="Description of the cake"
+            ref={descInputRef}
+            required
+          />
+        </div>
+        <div className={classes.input}>
+          <label htmlFor="cake-price">Base Price</label>
+          <input
+            type="number"
+            id="cake-price"
+            name="cake-price"
+            placeholder="Price of the cake"
+            ref={priceInputRef}
+            required
+          />
+        </div>
+        <div>
+          <button
+            type="submit"
+            onSubmit={formSubmitHandler}
+            id="submit-cake-details"
+            name="submit-details"
+          >
+            Add Cake
+          </button>
+        </div>
+      </form>
+    </div>
   );
 };
 

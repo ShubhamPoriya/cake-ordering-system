@@ -1,14 +1,53 @@
 .cakeCard {
   max-width: 700px;
   height: 150px;
-  border: 1px solid black;
+  border: 4px solid pink;
   margin: auto;
   margin-bottom: 15px;
   display: flex;
+  flex-direction: row;
+  border-radius: 75px;
+  align-items: center;
+  box-shadow: 0 0 8px pink;
 }
 
-.cakeImg {
-  width: 350px;
-  height: 150px;
-  object-fit: contain;
+.cakeDetails {
+  width: 500px;
+  padding-left: 55px;
+}
+
+.cakeDetails span {
+  font-size: 2rem;
+  font-weight: bolder;
+  font-family: "Dancing Script", cursive;
+}
+
+.cakePrice {
+  width: 100px;
+  text-align: center;
+  border-radius: 5px;
+}
+
+.cakePrice p {
+  margin: auto;
+  font-weight: 600;
+  margin-top: 10px;
+  border-radius: 8px;
+  background-color: rgba(255, 192, 203, 0.751);
+  color: brown;
+  box-shadow: 0 0 2px 3px brown;
+}
+
+.cakePrice span {
+  font-weight: 600;
+}
+
+.cakeEdit {
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.cakeEdit div {
+  margin-bottom: 10px;
 }
