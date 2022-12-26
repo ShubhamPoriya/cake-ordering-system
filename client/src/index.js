@@ -7,6 +7,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import ErrorPage from "../src/Error";
 import Home from "./pages/Home";
 import Orders from "./pages/Orders";
+import NewCakeForm from "./components/Cakes/NewCakeForm";
+import AddCake from "./pages/AddCake";
 
 const router = createBrowserRouter([
   {
@@ -17,6 +19,11 @@ const router = createBrowserRouter([
   {
     path: "/orders",
     element: <Orders />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/add-cake",
+    element: <AddCake />,
     errorElement: <ErrorPage />,
   },
   // {

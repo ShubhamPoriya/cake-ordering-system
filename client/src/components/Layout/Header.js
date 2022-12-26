@@ -7,7 +7,7 @@ const Header = () => {
     <div className={classes.header}>
       <ul>
         <li>
-          <Link to="/addCake">
+          <Link to="/add-cake">
             <a href="#Home">
               <MdAddCircleOutline size="2.5rem" color="brown" />
             </a>
