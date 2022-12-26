@@ -1,5 +1,5 @@
 .header {
-  height: 10vh;
+  height: 12vh;
   width: 100%;
   background-color: pink;
   margin: auto;
@@ -11,7 +11,7 @@
   height: inherit;
   display: flex;
   flex-direction: row;
-  justify-content: right;
+  justify-content: space-between;
   align-items: center;
   list-style: none;
   margin: 0;
@@ -25,4 +25,16 @@
 
 .header a {
   text-decoration: none;
+}
+
+.header img {
+  height: 10vh;
+  margin-left: 10px;
+}
+
+.header h2 {
+  font-family: "Merriweather", serif;
+  font-weight: 700;
+  font-stretch: ultra-expanded;
+  color: brown;
 }

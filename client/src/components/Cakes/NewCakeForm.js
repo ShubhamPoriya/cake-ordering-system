@@ -51,7 +51,7 @@ const NewCakeForm = () => {
         encType="multipart/form-data"
         className={classes.cakeForm}
       >
-        <h1>Add New Cake</h1>
+        <h1>New Cake Form</h1>
         <div className={classes.input}>
           <label htmlFor="cake-name">Cake Title</label>
           <input
@@ -93,7 +93,7 @@ const NewCakeForm = () => {
             id="submit-cake-details"
             name="submit-details"
           >
-            Submit
+            Add Cake
           </button>
         </div>
       </form>
