@@ -2,8 +2,6 @@ import classes from "./NewCakeForm.module.css";
 import { useRef, useState } from "react";
 import axios from "axios";
 import Header from "../Layout/Header";
-import { FaBirthdayCake } from "react-icons/fa";
-import { IconContext } from "react-icons/lib";
 
 const NewCakeForm = () => {
   const [submittingForm, setSubmittingForm] = useState(false);
@@ -14,7 +12,7 @@ const NewCakeForm = () => {
   const addCakeData = async (cakeData) => {
     try {
       const response = await axios.post(
-        "http://localhost:8080/admin/addItem",
+        "http://localhost:8080/admin/add-item",
         cakeData
       );
       console.log(response.data);

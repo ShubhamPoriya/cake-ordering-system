@@ -7,8 +7,8 @@ const CakeList = () => {
   const [items, setItems] = useState([]);
 
   const loadData = async () => {
-    const res = await axios.get("http://localhost:8080/admin/getItems");
-    setItems(res.data);
+    const response = await axios.get("http://localhost:8080/admin/get-items");
+    setItems(response.data);
   };
 
   useEffect(() => {
@@ -18,6 +18,7 @@ const CakeList = () => {
   const cakesList = items.map((item) => (
     <Cake
       key={item._id}
+      id={item._id}
       cakeName={item.itemName}
       cakeDesc={item.itemDesc}
       cakeBasePrice={item.itemBasePrice}

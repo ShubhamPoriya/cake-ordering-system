@@ -22,10 +22,42 @@ const addItem = async (req, res) => {
     });
 };
 
-const getItems = (req, res) => {
-  Item.find({})
+const getItems = async (req, res) => {
+  await Item.find({})
     .then((data) => {
       res.send(data);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
+const updateItem = async (req, res) => {
+  const cakeId = req.body.id;
+  const updatedName = req.body.name;
+  const updatedDesc = req.body.desc;
+  const updatedBasePrice = req.body.price;
+
+  await Item.findByIdAndUpdate(cakeId, {
+    itemName: updatedName,
+    itemDesc: updatedDesc,
+    itemBasePrice: updatedBasePrice,
+  })
+    .then((data) => {
+      res.send(data);
+      console.log("Item updated!");
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
+const deleteItem = async (req, res) => {
+  const cakeId = req.body.id;
+  await Item.findByIdAndRemove(cakeId)
+    .then((data) => {
+      res.send(data);
+      console.log("Item deleted!");
     })
     .catch((err) => {
       console.log(err);
@@ -35,4 +67,6 @@ const getItems = (req, res) => {
 module.exports = {
   addItem,
   getItems,
+  updateItem,
+  deleteItem,
 };
