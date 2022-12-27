@@ -3,7 +3,7 @@
   "name": "Cake Ordering App with React and Express",
   "icons": [
     {
-      "src": "favicon.ico",
+      "src": "bake-my-cake.png",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/x-icon"
     }
