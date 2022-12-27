@@ -6,22 +6,44 @@ import Cake from "./Cake";
 const CakeList = () => {
   const [items, setItems] = useState([]);
 
-  const loadData = async () => {
+  const loadCakeDetailsHandler = async () => {
     const response = await axios.get("http://localhost:8080/admin/get-items");
     setItems(response.data);
   };
 
+  const updateCakeDetailsHandler = async () => {
+    const response = await axios.post(
+      "http://localhost:8080/admin/update-item"
+    );
+    console.log(response);
+    setTimeout(() => {
+      loadCakeDetailsHandler();
+    }, 500);
+  };
+
+  const deleteCakeDetailsHandler = async (cakeId) => {
+    const response = await axios.post(
+      "http://localhost:8080/admin/delete-item",
+      { id: cakeId }
+    );
+    console.log(response);
+    setTimeout(() => {
+      loadCakeDetailsHandler();
+    }, 500);
+  };
+
   useEffect(() => {
-    loadData();
+    loadCakeDetailsHandler();
   }, []);
 
   const cakesList = items.map((item) => (
     <Cake
       key={item._id}
-      id={item._id}
       cakeName={item.itemName}
       cakeDesc={item.itemDesc}
       cakeBasePrice={item.itemBasePrice}
+      updateHandler={updateCakeDetailsHandler.bind(null, item._id)}
+      deleteHandler={deleteCakeDetailsHandler.bind(null, item._id)}
     />
   ));
 

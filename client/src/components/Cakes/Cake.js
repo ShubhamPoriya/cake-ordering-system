@@ -1,24 +1,8 @@
 import classes from "./Cake.module.css";
 import { Link } from "react-router-dom";
 import { MdDelete, MdOutlineMode } from "react-icons/md";
-import axios from "axios";
 
 const Cake = (props) => {
-  const updateCakeDetailsHandler = async () => {
-    const response = await axios.post(
-      "http://localhost:8080/admin/update-item"
-    );
-    console.log(response);
-  };
-
-  const deleteCakeDetailsHandler = async () => {
-    const response = await axios.post(
-      "http://localhost:8080/admin/delete-item",
-      { id: props.id }
-    );
-    console.log(response);
-  };
-
   return (
     <div className={classes.cakeCard}>
       <div className={classes.cakeDetails}>
@@ -33,7 +17,7 @@ const Cake = (props) => {
         <div>
           <Link to="/add-cake">
             <MdOutlineMode
-              onClick={updateCakeDetailsHandler}
+              onClick={props.updateHandler}
               size="1.5rem"
               color="brown"
             />
@@ -42,7 +26,7 @@ const Cake = (props) => {
         <div>
           <Link>
             <MdDelete
-              onClick={deleteCakeDetailsHandler}
+              onClick={props.deleteHandler}
               size="1.5rem"
               color="brown"
             />
